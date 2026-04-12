@@ -1,0 +1,26 @@
+#Frontend Files :
+
+# Dependencies :
+Client/node_modules
+Client/dist
+Client/build
+
+#Backend :
+
+# secret files -
+Server/.env
+
+#Kuch Main files -
+*.md
+
+# Dependencies (Yeh bahut bhari hoti hain, inki zaroorat nahi)
+Server/node_modules/
+Server/dist/
+Server/build/
+
+# Operating System Files
+Server/.DS_Store
+Server/thumbs.db
+
+# Logs
+Server/npm-debug.log*
