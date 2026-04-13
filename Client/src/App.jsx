@@ -128,8 +128,8 @@ const App = () => {
 
                 <div className='space-y-4'>
                   {task.ai_steps.map((step, i) => (
-                    <div key={i} className='flex gap-3 sm:gap-4 items-center group/item'>
-                      <div className='h-2 w-2 mt-2 rounded-full bg-blue-600 group-hover/item:scale-150 transition-transform'></div>
+                    <div key={i} className='flex gap-3 sm:gap-4 items-start group/item'>
+                      <div className='h-2 w-2 mt-2.5 rounded-full bg-blue-600 shrink-0 group-hover/item:scale-150 transition-transform'></div>
                       <p className='text-gray-400 text-sm sm:text-lg group-hover/item:text-gray-200 transition-colors'>{step}</p>
                     </div>
                   ))}
