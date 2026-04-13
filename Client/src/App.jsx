@@ -10,7 +10,7 @@ const App = () => {
   // 1. Fetch all tasks from Backend
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/task/all');
+      const res = await axios.get(`https://ai-task-manager-2ewx.onrender.com/api/task/all`);
       setTasks(res.data.data);
     } catch (err) {
       console.error("Error fetching tasks:", err);
@@ -30,7 +30,7 @@ const App = () => {
     setLoading(true);
     const ToastId = toast.loading("AI is Thinking, Please wait for a while 😅!")
     try {
-      await axios.post('http://localhost:5000/api/task/analyze', { title: taskTitle });
+      await axios.post(`https://ai-task-manager-2ewx.onrender.com/api/task/analyze`, { title: taskTitle });
       setTaskTitle(''); // Input khali karo
       await fetchTasks(); // List refresh karo
       toast.success("Task Breakdown Ready 👍", {id: ToastId})
@@ -45,7 +45,7 @@ const App = () => {
   const handleUpdate = async (id) => {
     try {
       
-      await axios.put(`http://localhost:5000/api/task/${id}`)
+      await axios.put(`https://ai-task-manager-2ewx.onrender.com/api/task/${id}`)
       fetchTasks();
       toast.success("Task Updated ✅")
     } catch (error) {
@@ -57,7 +57,7 @@ const App = () => {
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure you want to delete this?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/task/${id}`);
+      await axios.delete(`https://ai-task-manager-2ewx.onrender.com/api/task/${id}`);
       fetchTasks();
       toast.success("Status Deleted ✅")
     } catch (err) {
