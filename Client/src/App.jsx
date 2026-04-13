@@ -66,24 +66,24 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-6 md:p-12 selection:bg-blue-500/30">
-      <Toaster position='top-center' reverseOrder={false} />
+    <div className="min-h-screen bg-gray-950 text-white p-6 sm:p-6 md:p-12 selection:bg-blue-500/30">
+      <Toaster position='top-center' />
 
       <div className="max-w-4xl mx-auto">
         
         {/* Header Section */}
-        <header className="text-center mb-16">
-          <h1 className="text-6xl font-black tracking-tighter bg-clip-text bg-linear-to-r from-blue-400 to-purple-500 mb-4">
-            Task Master <span className='text-blue-500 text-3xl italic'>AI</span>
+        <header className="text-center mb-10 md:mb-16">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter bg-clip-text bg-linear-to-r from-blue-400 to-purple-500 mb-4">
+            Task Master <span className='text-blue-500 text-xl sm:text-3xl italic'>AI</span>
           </h1>
-          <div className='h-1 w-24 bg-blue-600 mx-auto rounded-full'></div>
+          <div className='h-1 w-16 sm:w-24 bg-blue-600 mx-auto rounded-full'></div>
         </header>
 
         {/* Input Form Section */}
-        <form onSubmit={handleAnalyze} className="relative group mb-20">
+        <form onSubmit={handleAnalyze} className="flex flex-col sm:relative group mb-12 md:mb-20 gap-3 sm:gap-0">
           <input
             type="text"
-            className="w-full p-6 pr-44 rounded-2xl bg-gray-800 border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-lg shadow-2xl"
+            className="w-full p-4 sm:p-6 sm:pr-44 rounded-xl sm:rounded-2xl bg-gray-800 border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-base sm:text-lg shadow-2xl"
             placeholder="What's your next big goal ?"
             value={taskTitle}
             onChange={(e) => setTaskTitle(e.target.value)}
@@ -91,34 +91,34 @@ const App = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`absolute right-3 top-3 bottom-3 bg-blue-600 hover:bg-blue-700 px-6 rounded-xl font-bold transition-all disabled:grayscale`}
+            className={`sm:absolute sm:right-3 sm:top-3 sm:bottom-3 bg-blue-600 hover:bg-blue-700 p-4 sm:px-6 rounded-xl font-bold transition-all disabled:grayscale`}
           >
             {loading ? "Processing..." : "Get Plan"}
           </button>
         </form>
 
         {/* Tasks Grid */}
-        <div className="grid gap-10">
+        <div className="grid gap-6 md:gap-10">
           {tasks.map((task) => (
             <div key={task.id} 
-            className={`relative overflow-hidden transition-all duration-500 rounded-3xl border-2 ${task.status === "Completed" ? 'bg-gray-900/40 border-green-900/30 opacity-60' : 'bg-gray-900 border-gray-900 hover:bg-gray-700'}`}>
+            className={`relative overflow-hidden transition-all duration-500 rounded-2xl sm:rounded-3xl border-2 ${task.status === "Completed" ? 'bg-gray-900/40 border-green-900/30 opacity-60' : 'bg-gray-900 border-gray-900 hover:bg-gray-700'}`}>
 
-              <div className='p-8'>
-                <div className='flex justify-between items-center mb-8'>
-                  <h3 className={`text-2xl font-bold ${task.status === "Completed" ? 'line-through text-gray-500' : 'text-white'}`}>
+              <div className= 'p-5 sm:p-8'>
+                <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 sm:mb-8'>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${task.status === "Completed" ? 'line-through text-gray-500' : 'text-white'}`}>
                     {task.title}
                   </h3>
 
-                  <div className='flex gap-3'>
+                  <div className='flex gap-2 sm:gap-3 w-full sm:w-auto justify-end'>
                     <button 
                     onClick={()  => handleUpdate(task.id)}
-                    className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${task.status === "Completed" ? 'bg-green-500 text-white' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}>
+                    className={`flex-1 sm:flex-none px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all ${task.status === "Completed" ? 'bg-green-500 text-white' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}>
                       {task.status}
                     </button>
 
                     <button onClick={() => handleDelete(task.id)}
                       className='p-2 text-gray-600 hover:bg-red-500 transition-colors'>
-                        <svg xmlns="http://www.w3.org/2000/svg" className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                        <svg xmlns="http://www.w3.org/2000/svg" className='h-5 w-5 sm:h-6 sm:w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /> 
                         </svg>
                       </button>
@@ -128,9 +128,9 @@ const App = () => {
 
                 <div className='space-y-4'>
                   {task.ai_steps.map((step, i) => (
-                    <div key={i} className='flex gap-4 items-center group/item'>
-                      <div className='h-2 w-2 rounded-full bg-blue-600 group-hover/item:scale-150 transition-transform'></div>
-                      <p className='text-gray-400 text-lg group-hover/item:text-gray-200 transition-colors'>{step}</p>
+                    <div key={i} className='flex gap-3 sm:gap-4 items-center group/item'>
+                      <div className='h-2 w-2 mt-2 rounded-full bg-blue-600 group-hover/item:scale-150 transition-transform'></div>
+                      <p className='text-gray-400 text-sm sm:text-lg group-hover/item:text-gray-200 transition-colors'>{step}</p>
                     </div>
                   ))}
                 </div>
