@@ -67,7 +67,7 @@ export const Analyzetask = async(req, res) => {
             headers: {
                 Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
                 "Content-Type": "application/json",
-                "HTTP-Referer": "http://localhost:5000",
+                "HTTP-Referer": `${process.env.VITE_URL}`,
                 "X-Title": "AI Task App"
             }
         }
