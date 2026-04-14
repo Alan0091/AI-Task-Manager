@@ -28,15 +28,16 @@ const App = () => {
   // 2. Analyze Task with AI
   const handleAnalyze = async (e) => {
     e.preventDefault();
-    // Safety Check: Title khali na ho aur loading pehle se na chal rahi ho
-    if (!taskTitle.trim() || loading) return;
 
     const haswords = badWords.some(word => taskTitle.toLowerCase().includes(word.toLowerCase()))
 
     if(haswords) {
       toast.error("User, Please do not use bad words!")
     }
-    
+    // Safety Check: Title khali na ho aur loading pehle se na chal rahi ho
+    if (!taskTitle.trim() || loading) return;
+
+
     setLoading(true);
     const ToastId = toast.loading("AI is Thinking, Please wait for a while 😅!")
     try {
