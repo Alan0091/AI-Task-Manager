@@ -33,6 +33,7 @@ const App = () => {
 
     if(haswords) {
       toast.error("User, Please do not use bad words!")
+      return;
     }
     // Safety Check: Title khali na ho aur loading pehle se na chal rahi ho
     if (!taskTitle.trim() || loading) return;
