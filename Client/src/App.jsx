@@ -7,7 +7,7 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const badWords = ['Loda', 'Lavda', 'Lomda', 'Lund', 'Pussy', 'Chut', 'Ass', 'Gaand', 'Anal', 'Bund', 'Fuddi', 'Chudai', 'Chudayi', 'Madarchod', 'Bsdk', 'Bsdka', 'Bhosadi', 'BKL', 'MKC', 'Jhantu', 'Jhant', 'Tatte', 'Aand', 'Chutiya', 'Asshole', 'Motherfucker', 'Bitch', 'Tatti', 'Behanchod', 'Behenchod', 'Chodu', 'Bhosada', 'Blowjob', 'Handjob']
+  const badWords = ['Loda', 'Lavda','Fuck', 'Lomda', 'Lund', 'Pussy', 'Chut', 'Ass', 'Gaand', 'Anal', 'Bund', 'Fuddi', 'Chudai', 'Chudayi', 'Madarchod', 'Bsdk', 'Bsdka', 'Bhosadi', 'BKL', 'MKC', 'Jhantu', 'Jhant', 'Tatte', 'Aand', 'Chutiya', 'Asshole', 'Motherfucker', 'Bitch', 'Tatti', 'Behanchod', 'Behenchod', 'Chodu', 'Bhosada', 'Blowjob', 'Handjob']
 
 
 
