@@ -55,12 +55,21 @@ const App = () => {
   };
 
   const handleUpdate = async (id) => {
+
+    const updatetask = tasks.map((t) => (
+      t.id === id ? {...t, status: t.status === 'Completed' ? 'Pending' : 'Completed'} : t
+    ))
+    setTasks(updatetask);
+
+    toast.success("Task Updated ✅", {duration: 1000})
+
     try {
       
       await axios.put(`https://ai-task-manager-2ewx.onrender.com/api/task/${id}`)
       fetchTasks();
-      toast.success("Task Updated ✅")
+      
     } catch (error) {
+      fetchTasks()
       toast.error("Update Failed!")
     }
   }
@@ -95,6 +104,7 @@ const App = () => {
         <form onSubmit={handleAnalyze} className="flex flex-col sm:relative group mb-12 md:mb-20 gap-3 sm:gap-0">
           <input
             type="text"
+            disabled={loading}
             className="w-full p-4 sm:p-6 sm:pr-44 rounded-xl sm:rounded-2xl bg-gray-800 border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-base sm:text-lg shadow-2xl"
             placeholder="What's your next big goal ?"
             value={taskTitle}
@@ -121,12 +131,36 @@ const App = () => {
                     {task.title}
                   </h3>
 
-                  <div className='flex gap-2 sm:gap-3 w-full sm:w-auto justify-end'>
+                  <div className='flex flex-col items-end gap-2 w-full sm:w-auto'>
                     <button 
                     onClick={()  => handleUpdate(task.id)}
-                    className={`flex-1 sm:flex-none px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all ${task.status === "Completed" ? 'bg-green-500 text-white' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}>
-                      {task.status}
+                    title='Click to Change Status here 👉'
+                    className={`group relative px-4 py-3 sm:p-6 sm:py-2 rounded-xl sm:rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 w-full sm:w-auto active:scale-95${task.status === "Completed" ? 'bg-green-500/10 text-green-600 border border-green-500/30' : 'bg-blue-600 text-white  hover:bg-blue-700 sm:hover:scale-105 shadow-lg shadow-blue-500/20'}`}>
+
+                      <div className='flex items-center justify-center gap-2'>
+                        {task.status === 'Completed' ? (
+                          <>
+                          <span className='text-sm'>✓</span>
+                          <span>Finished</span>
+                          </>
+                        ) : (
+                          <>
+                          <span className='animate-pulse'>⚡</span>
+                          <span>Mark as done ✅</span>
+                          </>
+                        )}
+                      </div>
+
+                      <span className='hidden sm:block absolute -bottom-8 right-0 w-max bg-gray-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none'>
+                        {task.status === 'Completed' ? 'Task is done!' : 'Click if Completed'}
+                      </span>
                     </button>
+
+                    {task.status !== 'Completed' && (
+                      <span className='text-[10px] text-gray-400 italic mr-1 sm:hidden'>
+                        Tap to Complete Your Task ✅
+                      </span>
+                    )}
 
                     <button onClick={() => handleDelete(task.id)}
                       className='p-2 text-gray-600 hover:bg-red-500 transition-colors'>
