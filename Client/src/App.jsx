@@ -7,6 +7,10 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const badWords = ['Loda', 'Lavda', 'Lomda', 'Lund', 'Pussy', 'Chut', 'Ass', 'Gaand', 'Anal', 'Bund', 'Fuddi', 'Chudai', 'Chudayi', 'Madarchod', 'Bsdk', 'Bsdka', 'Bhosadi', 'BKL', 'MKC', 'Jhantu', 'Jhant', 'Tatte', 'Aand', 'Chutiya', 'Asshole', 'Motherfucker', 'Bitch', 'Tatti']
+
+
+
   // 1. Fetch all tasks from Backend
   const fetchTasks = async () => {
     try {
@@ -27,6 +31,12 @@ const App = () => {
     // Safety Check: Title khali na ho aur loading pehle se na chal rahi ho
     if (!taskTitle.trim() || loading) return;
 
+    const haswords = badWords.some(word => taskTitle.toLowerCase().includes(word.toLowerCase()))
+
+    if(haswords) {
+      toast.error("User, Please do not use bad words!")
+    }
+    
     setLoading(true);
     const ToastId = toast.loading("AI is Thinking, Please wait for a while 😅!")
     try {
